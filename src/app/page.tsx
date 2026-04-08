@@ -5,9 +5,10 @@ import { useAuth } from '@/hooks/useAuth';
 import { TopNavBar } from '@/components/layout/TopNavBar';
 import { SideNav } from '@/components/layout/SideNav';
 import { UserMenu } from '@/components/ui/UserMenu';
+import RulebookAdminDashboard from '@/components/rules/RulebookAdminDashboard';
 
 export default function HomePage() {
-  const { user, isLoading, signIn, signOut } = useAuth();
+  const { user, isLoading, accessToken, signIn, signOut } = useAuth();
   const [activeNav, setActiveNav] = useState('rules');
 
   return (
@@ -31,9 +32,10 @@ export default function HomePage() {
               <h1 className="text-2xl font-semibold text-text-primary tracking-wide uppercase mb-1" style={{ fontFamily: 'var(--font-sans)' }}>
                 Rules Management
               </h1>
-              <p className="text-text-muted text-sm">
-                Manage series regulations, technical rules, and sporting codes.
+              <p className="text-text-muted text-sm mb-6">
+                Upload, process, and activate series rulebooks.
               </p>
+              <RulebookAdminDashboard accessToken={accessToken} />
             </div>
           )}
         </main>
