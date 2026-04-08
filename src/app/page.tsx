@@ -10,7 +10,7 @@ import RulesChat from '@/components/rules/RulesChat';
 
 export default function HomePage() {
   const { user, isLoading, isAuthenticated, accessToken, signIn, signOut } = useAuth();
-  const [activeNav, setActiveNav] = useState('rules');
+  const [activeNav, setActiveNav] = useState('teams-cars');
 
   return (
     <div className="flex flex-col h-screen overflow-hidden">
@@ -29,6 +29,18 @@ export default function HomePage() {
           <SideNav activeItem={activeNav} onNavigate={setActiveNav} />
 
           <main className="flex-1 overflow-auto p-6">
+            {activeNav === 'teams-cars' && (
+              <SectionPlaceholder title="Teams / Cars" description="Manage team registrations, car entries, and technical specifications." />
+            )}
+            {activeNav === 'drivers' && (
+              <SectionPlaceholder title="Drivers" description="Driver profiles, license verification, and seat assignments." />
+            )}
+            {activeNav === 'motorsports-reg' && (
+              <SectionPlaceholder title="Motorsports Reg" description="Registration platform integration and entry management." />
+            )}
+            {activeNav === 'branding' && (
+              <SectionPlaceholder title="Branding" description="Series branding assets, guidelines, and livery approvals." />
+            )}
             {activeNav === 'rules' && (
               <div>
                 <h1 className="text-2xl font-semibold text-text-primary tracking-wide uppercase mb-1" style={{ fontFamily: 'var(--font-sans)' }}>
@@ -53,6 +65,15 @@ export default function HomePage() {
                 </div>
               </div>
             )}
+            {activeNav === 'schedule-events' && (
+              <SectionPlaceholder title="Schedule / Events" description="Race calendar, event configuration, and session scheduling." />
+            )}
+            {activeNav === 'sponsors-partners' && (
+              <SectionPlaceholder title="Sponsors / Partners" description="Sponsorship management, partner agreements, and activation tracking." />
+            )}
+            {activeNav === 'communications' && (
+              <SectionPlaceholder title="Communications" description="Series announcements, notifications, and messaging." />
+            )}
           </main>
         </div>
       ) : (
@@ -72,6 +93,20 @@ export default function HomePage() {
           </div>
         </main>
       )}
+    </div>
+  );
+}
+
+function SectionPlaceholder({ title, description }: { title: string; description: string }) {
+  return (
+    <div>
+      <h1 className="text-2xl font-semibold text-text-primary tracking-wide uppercase mb-1" style={{ fontFamily: 'var(--font-sans)' }}>
+        {title}
+      </h1>
+      <p className="text-text-muted text-sm mb-6">{description}</p>
+      <div className="bg-bg-card border border-border-default rounded-lg text-center py-16">
+        <p className="text-text-muted text-sm">Coming soon</p>
+      </div>
     </div>
   );
 }
