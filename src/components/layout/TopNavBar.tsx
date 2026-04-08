@@ -9,9 +9,11 @@ export function TopNavBar({ children }: TopNavBarProps) {
     <header className="flex items-center gap-4 px-4 py-2 bg-bg-surface border-b border-border-default relative z-10">
       {/* Logo */}
       <div className="shrink-0">
-        <span className="text-text-primary text-lg font-semibold tracking-wide uppercase" style={{ fontFamily: 'var(--font-sans)' }}>
-          Sector1 <span className="text-accent-orange">Series</span>
-        </span>
+        <img
+          src="/images/seriesmanagement.svg"
+          alt="Series Management"
+          className="h-7 w-auto"
+        />
       </div>
 
       {/* Spacer */}

@@ -7,10 +7,10 @@
   --color-bg-elevated: #252525;
   --color-bg-hover: #2a2a2a;
 
-  --color-accent-orange: #e8751a;
-  --color-accent-amber: #f59e0b;
-  --color-accent-orange-dim: rgba(232, 117, 26, 0.15);
-  --color-accent-glow: rgba(232, 117, 26, 0.25);
+  --color-accent-orange: #84291f;
+  --color-accent-amber: #a3362a;
+  --color-accent-orange-dim: rgba(132, 41, 31, 0.15);
+  --color-accent-glow: rgba(132, 41, 31, 0.25);
 
   --color-text-primary: #f0f0f0;
   --color-text-secondary: #999999;
@@ -18,7 +18,7 @@
 
   --color-border-default: #2a2a2a;
   --color-border-subtle: #333333;
-  --color-border-active: #e8751a;
+  --color-border-active: #84291f;
 
   --color-status-green: #22c55e;
   --color-status-red: #ef4444;
@@ -101,8 +101,8 @@ body::before {
 
 /* Orange glow effect */
 .glow-orange {
-  box-shadow: 0 0 12px rgba(232, 117, 26, 0.2),
-              0 0 4px rgba(232, 117, 26, 0.1);
+  box-shadow: 0 0 12px rgba(132, 41, 31, 0.2),
+              0 0 4px rgba(132, 41, 31, 0.1);
 }
 
 /* Status dot animation */

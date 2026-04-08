@@ -64,7 +64,7 @@ export function UserMenu({ user, isLoading, onSignIn, onSignOut }: UserMenuProps
       {/* Avatar button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-9 h-9 rounded-full border-2 border-accent-orange bg-bg-elevated flex items-center justify-center overflow-hidden cursor-pointer hover:shadow-[0_0_8px_rgba(232,117,26,0.3)] transition-shadow"
+        className="w-9 h-9 rounded-full border-2 border-accent-orange bg-bg-elevated flex items-center justify-center overflow-hidden cursor-pointer hover:shadow-[0_0_8px_rgba(132,41,31,0.3)] transition-shadow"
         title={user?.full_name || user?.email || 'Account'}
       >
         {user?.profile_picture_url ? (

@@ -6,9 +6,10 @@ import { TopNavBar } from '@/components/layout/TopNavBar';
 import { SideNav } from '@/components/layout/SideNav';
 import { UserMenu } from '@/components/ui/UserMenu';
 import RulebookAdminDashboard from '@/components/rules/RulebookAdminDashboard';
+import RulesChat from '@/components/rules/RulesChat';
 
 export default function HomePage() {
-  const { user, isLoading, accessToken, signIn, signOut } = useAuth();
+  const { user, isLoading, isAuthenticated, accessToken, signIn, signOut } = useAuth();
   const [activeNav, setActiveNav] = useState('rules');
 
   return (
@@ -22,24 +23,55 @@ export default function HomePage() {
         />
       </TopNavBar>
 
-      <div className="flex flex-1 overflow-hidden">
-        <SideNav activeItem={activeNav} onNavigate={setActiveNav} />
+      {isAuthenticated ? (
+        /* ── Authenticated: full app with sidebar ── */
+        <div className="flex flex-1 overflow-hidden">
+          <SideNav activeItem={activeNav} onNavigate={setActiveNav} />
 
-        {/* Main content area */}
+          <main className="flex-1 overflow-auto p-6">
+            {activeNav === 'rules' && (
+              <div>
+                <h1 className="text-2xl font-semibold text-text-primary tracking-wide uppercase mb-1" style={{ fontFamily: 'var(--font-sans)' }}>
+                  Rules Management
+                </h1>
+                <p className="text-text-muted text-sm mb-6">
+                  Upload, process, and activate series rulebooks.
+                </p>
+                <RulebookAdminDashboard accessToken={accessToken} />
+
+                <div className="max-w-4xl mt-10">
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="section-header flex items-center gap-2">
+                      <svg className="w-4 h-4 text-accent-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                      </svg>
+                      Rules Assistant
+                    </h2>
+                    <img src="/images/wrl.png" alt="WRL" className="h-8 w-auto opacity-80" />
+                  </div>
+                  <RulesChat />
+                </div>
+              </div>
+            )}
+          </main>
+        </div>
+      ) : (
+        /* ── Public: Rules Assistant only ── */
         <main className="flex-1 overflow-auto p-6">
-          {activeNav === 'rules' && (
-            <div>
+          <div className="max-w-2xl mx-auto mt-8">
+            <div className="relative mb-6">
               <h1 className="text-2xl font-semibold text-text-primary tracking-wide uppercase mb-1" style={{ fontFamily: 'var(--font-sans)' }}>
-                Rules Management
+                Rules Assistant
               </h1>
-              <p className="text-text-muted text-sm mb-6">
-                Upload, process, and activate series rulebooks.
+              <p className="text-text-muted text-sm pr-32">
+                This is a development version only and only intended for guidance. Please consult the official rulebook for absolute answers.
               </p>
-              <RulebookAdminDashboard accessToken={accessToken} />
+              <img src="/images/wrl.png" alt="WRL" className="absolute right-0 top-0 h-[108px] w-auto opacity-80" />
             </div>
-          )}
+            <RulesChat />
+          </div>
         </main>
-      </div>
+      )}
     </div>
   );
 }

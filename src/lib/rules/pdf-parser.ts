@@ -112,7 +112,8 @@ function findPageForOffset(offset: number, pageOffsets: number[]): number | null
 
 export async function parseAndChunkPDF(buffer: Buffer): Promise<ParseResult> {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const pdfParse = require('pdf-parse/lib/pdf-parse.js')
+  const imported = require('pdf-parse/lib/pdf-parse.js')
+  const pdfParse = typeof imported === 'function' ? imported : imported.default
 
   const pageTexts: string[] = []
   const pageOffsets: number[] = []
