@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #111111;
+  --color-bg-surface: #1a1a1a;
+  --color-bg-card: #1e1e1e;
+  --color-bg-elevated: #252525;
+  --color-bg-hover: #2a2a2a;
+
+  --color-accent-orange: #e8751a;
+  --color-accent-amber: #f59e0b;
+  --color-accent-orange-dim: rgba(232, 117, 26, 0.15);
+  --color-accent-glow: rgba(232, 117, 26, 0.25);
+
+  --color-text-primary: #f0f0f0;
+  --color-text-secondary: #999999;
+  --color-text-muted: #666666;
+
+  --color-border-default: #2a2a2a;
+  --color-border-subtle: #333333;
+  --color-border-active: #e8751a;
+
+  --color-status-green: #22c55e;
+  --color-status-red: #ef4444;
+  --color-status-yellow: #eab308;
+  --color-status-blue: #3b82f6;
+
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', 'Fira Code', ui-monospace, monospace;
+  --font-sans: 'IBM Plex Sans', 'Inter', system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-subtle);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-accent-orange-dim);
+  color: var(--color-text-primary);
+}
+
+/* Data display utility */
+.font-data {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* Section headers */
+.section-header {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+/* Orange glow effect */
+.glow-orange {
+  box-shadow: 0 0 12px rgba(232, 117, 26, 0.2),
+              0 0 4px rgba(232, 117, 26, 0.1);
+}
+
+/* Status dot animation */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
